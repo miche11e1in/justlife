@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just Life - Blog</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 10px;
+    }
+    header h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+    header p {
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #555;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      margin: 10px 0 30px;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+    }
+    .blog-post {
+      display: flex;
+      align-items: center;
+      max-width: 800px;
+      border-top: 1px solid #999;
+      padding: 30px 0;
+    }
+    .blog-post img {
+      width: 200px;
+      height: auto;
+      margin-right: 30px;
+    }
+    .blog-content {
+      max-width: 500px;
+    }
+    .category {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #777;
+      text-transform: uppercase;
+    }
+    .blog-content h2 {
+      font-size: 24px;
+      margin: 5px 0;
+    }
+    .blog-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .read-more {
+      font-size: 14px;
+      color: #333;
+      margin-top: 10px;
+      display: inline-block;
+      letter-spacing: 1px;
+    }
+    .read-more::after {
+      content: ' —';
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Just Life</h1>
+    <p>THE THINGS WE KEEP & THE STORIES WE KEEP CLOSE</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Welcome</a>
+    <a href="BlogLandingPage.html">Blog</a>
+    <a href="#">About</a>
+  </nav>
+
+  <section class="blog-list">
+    <div class="blog-post">
+      <img src="Blog1_photos/Me_Cade_Claire.jpeg" alt="Blog1">
+      <div class="blog-content">
+        <div class="category">Day In Life</div>
+        <h2>Passion As Work (Forever Goal)</h2>
+        <p>Behind-The-Scenes into the life of an events marketing + design intern at a lifestyle media company. They call it work-life balance :D</p>
+        <a href="blog1.html" class="read-more" style="text-decoration: none;">Read more</a>
+      </div>
+    </div>
+
+    <div class="blog-post">
+      <img src="https://via.placeholder.com/200x200?text=Shadow+Art" alt="Wall Hanging">
+      <div class="blog-content">
+        <div class="category">Ideals + Musings</div>
+        <h2>The Things We Need</h2>
+        <p>Tis the season. Last weekend, the kids and I teetered up and down the attic stairs in search of salt dough stars and knitted stockings...</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </div>
+
+    <div class="blog-post">
+      <img src="https://via.placeholder.com/200x200?text=Leaves+Wall" alt="Leaf Wall Art">
+      <div class="blog-content">
+        <div class="category">Home + Rest</div>
+        <h2>Currently</h2>
+        <p>Autumn leaves, warm blankets, quiet moments. Here’s what’s been filling our days recently, slowly, softly, intentionally...</p>
+        <span class="read-more">Read more</span>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

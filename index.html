@@ -1,7 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just Life</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 10px;
+    }
+    header h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+    header p {
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #555;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      margin: 10px 0 30px;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .posts {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 20px;
+    }
+    .post {
+      background: white;
+      max-width: 300px;
+      text-align: center;
+    }
+    .post img {
+      width: 100%;
+      height: auto;
+    }
+    .category {
+      background: black;
+      color: white;
+      display: inline-block;
+      padding: 5px 10px;
+      font-size: 12px;
+      margin-top: -25px;
+      position: relative;
+      z-index: 2;
+    }
+    .post p {
+      padding: 10px 15px 20px;
+      font-size: 16px;
+    }
+    .subscribe {
+      text-align: center;
+      padding: 40px;
+    }
+    .subscribe input[type="email"] {
+      padding: 10px;
+      width: 250px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .subscribe button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ca8e56;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .subscribe button:hover {
+      background-color: #b9965b;
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+  <header>
+    <h1>Just Life</h1>
+    <p>THE THINGS WE KEEP & THE STORIES WE KEEP CLOSE</p>
+  </header>
+
+  <nav>
+    <a href="#">Welcome</a>
+    <a href="BlogLandingPage.html">Blog</a>
+    <a href="#">About</a>
+  </nav>
+
+  <section class="posts">
+    <div class="post">
+      <img src="/Blog1_photos/Me_Cade_Claire.jpeg">
+      <div class="category">SELF REFLECTION + GROWTH</div>
+      <p>Giving Ourselves What Technology Can’t</p>
+    </div>
+    <div class="post">
+      <img src="https://via.placeholder.com/300x200?text=Image+2" alt="Post 2">
+      <div class="category">IDEALS + MUSINGS</div>
+      <p>What I Saw When I Came Back to the Internet, 3 Years Later</p>
+    </div>
+    <div class="post">
+      <img src="https://via.placeholder.com/300x200?text=Image+3" alt="Post 3">
+      <div class="category">FAMILY + KIDS</div>
+      <p>Lifting Up</p>
+    </div>
+  </section>
+
+  <section class="subscribe">
+    <h2>Receive updates</h2>
+    <p>Enter your email to subscribe for updates:</p>
+    <form name="submit-to-google-sheet">
+      <input name="email" type="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="response-msg" style="margin-top: 20px; color: green;"></p>
+  </section>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxqHu4SjQ2sjHmBY3oelfmnJ1rdktlAqa5iOO8i4ZPBkf2LWPgox0g7lVk1Fby4VYCenQ/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const responseMsg = document.getElementById('response-msg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          responseMsg.innerText = 'Thank you for subscribing!';
+          form.reset();
+        })
+        .catch(error => {
+          responseMsg.innerText = 'Error! Please try again.';
+          console.error('Error!', error.message);
+        });
+    });
+  </script>
+
 </body>
 </html>
