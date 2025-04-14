@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects & Research | Just Life</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 10px;
+    }
+    header h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+    header p {
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #555;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      margin: 10px 0 0; /* updated here */
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .projects {
+      text-align: center;
+      padding: 1.5rem 2rem 3rem; /* updated here */
+      background-color: #f9f9f9;
+    }
+    .projects h1 {
+      font-size: 36px;
+      margin-bottom: 2rem;
+      color: #222;
+    }
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-item {
+      border-radius: 20px;
+      padding: 2rem;
+      color: #fff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .project-item:hover {
+      transform: translateY(-8px);
+    }
+    .project-item h2 {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .project-item h3 {
+      font-size: 1.8rem;
+      margin: 0.5rem 0 1rem;
+    }
+    .project-item p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      background-color: #fff;
+      color: #333;
+      padding: 0.5rem 1.2rem;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      border: 2px solid #fff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .btn:hover {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Just Life</h1>
+    <p>THE THINGS WE KEEP & THE STORIES WE KEEP CLOSE</p>
+  </header>
+  
+  <nav>
+    <a href="index.html">Welcome</a>
+    <a href="BlogLandingPage.html">Blog</a>
+    <a href="#">Projects</a>
+    <a href="About.html">About</a>
+  </nav>
+
+  <section class="projects">
+    <h1>Projects & Research</h1>
+    <div class="project-list">
+      <div class="project-item" style="background-color: #a1c1f1;">
+        <h2>Startup</h2>
+        <h3>Just Jotes</h3>
+        <p>A creative initiative turning denim jeans into stylish, sustainable tote bags. Born from a desire to reduce waste and explore fashion as storytelling.</p>
+        <a href="#" class="btn">Learn More</a>
+      </div>
+
+      <div class="project-item" style="background-color: #dfaf83;">
+        <h2>Research</h2>
+        <h3>Biofilm: Multidrug-Resistant Bacteria</h3>
+        <p>Developed and patented novel methodology tackling antibiotic resistance. Published and presented internationally at ECBIOS 2023.</p>
+        <a href="https://ieeexplore.ieee.org/abstract/document/10218541" class="btn">Learn More</a>
+      </div>
+
+      <div class="project-item" style="background-color: #dfaf83;">
+        <h2>Research</h2>
+        <h3>Ionic Liquids: Eco-Friendly Catalyst</h3>
+        <p>Co-authored 3 published papers on recyclable, low-pollution chemical catalysts. Research focused on sustainable industry solutions.</p>
+        <a href="https://orcid.org/0000-0003-4149-1128" class="btn">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

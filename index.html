@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Just Life</title>
   <style>
     body {
       font-family: Georgia, serif;
       margin: 0;
       background: #f9f9f9;
+      color: #333;
     }
     header {
       text-align: center;
-      padding: 40px 20px 10px;
+      padding: 60px 20px 20px;
     }
     header h1 {
-      font-size: 48px;
+      font-size: 64px;
       margin: 0;
     }
     header p {
-      font-size: 14px;
+      font-size: 18px;
       letter-spacing: 2px;
       color: #555;
     }
@@ -28,7 +29,7 @@
       border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
       padding: 10px 0;
-      margin: 10px 0 30px;
+      margin: 0 0 30px;
     }
     nav a {
       margin: 0 15px;
@@ -37,20 +38,130 @@
       font-weight: bold;
       font-size: 14px;
     }
+
+    /* Popup styles */
+    #popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    #popup-subscribe {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      width: 90%;
+      max-width: 400px;
+      background: #eeeeee;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      padding: 30px 25px;
+      text-align: center;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .popup-content h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .popup-content p {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    #popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+    #popup-form input[type="email"] {
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      background: #f5f5f5;
+    }
+    #popup-form button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #popup-form button:hover {
+      background-color: #222;
+    }
+    #close-popup {
+      margin-top: 15px;
+      background: none;
+      border: none;
+      color: #777;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .popup-msg {
+      font-size: 14px;
+      color: green;
+      margin-top: 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .posts-section {
+      padding: 20px 0 40px;
+      border-bottom: 1px solid #ddd;
+      margin-top: 0;
+    }
+    .posts-section h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .posts-section p {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #666;
+    }
     .posts {
       display: flex;
       justify-content: center;
       gap: 30px;
+      flex-wrap: wrap;
       padding: 0 20px;
     }
     .post {
       background: white;
       max-width: 300px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .post:hover {
+      transform: translateY(-5px);
     }
     .post img {
       width: 100%;
       height: auto;
+      border-bottom: 1px solid #eee;
     }
     .category {
       background: black;
@@ -63,9 +174,21 @@
       z-index: 2;
     }
     .post p {
-      padding: 10px 15px 20px;
+      padding: 10px 15px;
       font-size: 16px;
     }
+    .post a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #ca8e56;
+      transition: color 0.2s ease;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .post a:hover {
+      color: #a96c32;
+    }
+
     .subscribe {
       text-align: center;
       padding: 40px;
@@ -89,8 +212,8 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
     <h1>Just Life</h1>
     <p>THE THINGS WE KEEP & THE STORIES WE KEEP CLOSE</p>
@@ -99,27 +222,98 @@
   <nav>
     <a href="#">Welcome</a>
     <a href="BlogLandingPage.html">Blog</a>
-    <a href="#">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="About.html">About</a>
   </nav>
 
-  <section class="posts">
-    <div class="post">
-      <img src="/Blog1_photos/Me_Cade_Claire.jpeg">
-      <div class="category">SELF REFLECTION + GROWTH</div>
-      <p>Giving Ourselves What Technology Can’t</p>
+  <!-- Popup Subscribe -->
+  <div id="popup-overlay"></div>
+  <div id="popup-subscribe">
+    <div class="popup-content">
+      <h2>Stay in the Loop</h2>
+      <p>A little love, inspiration, and updates from Just Life — straight to your inbox</p>
+      <form id="popup-form" name="popup-submit-to-google-sheet">
+        <input name="email" type="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p id="popup-response-msg" class="popup-msg"></p>
+      <button id="close-popup">Maybe later</button>
     </div>
-    <div class="post">
-      <img src="https://via.placeholder.com/300x200?text=Image+2" alt="Post 2">
-      <div class="category">IDEALS + MUSINGS</div>
-      <p>What I Saw When I Came Back to the Internet, 3 Years Later</p>
-    </div>
-    <div class="post">
-      <img src="https://via.placeholder.com/300x200?text=Image+3" alt="Post 3">
-      <div class="category">FAMILY + KIDS</div>
-      <p>Lifting Up</p>
+  </div>
+
+  <!-- Blog Section -->
+  <section class="posts-section">
+    <h2>Read the Blog</h2>
+    <p>Raw reflections, ideas, and life in-between</p>
+    <div class="posts">
+      <div class="post">
+        <img src="Blog1_photos/Me_Cade_Claire.jpeg">
+        <div class="category">SELF REFLECTION + GROWTH</div>
+        <p>Letting college just college</p>
+        <a href="BlogLandingPage.html">Read more</a>
+      </div>
+      <div class="post">
+        <img src="Blog2_photos/Tote_Bag.jpeg" alt="Post 2">
+        <div class="category">IDEALS + MUSINGS</div>
+        <p>Epiphanies & thoughts that just come</p>
+        <a href="#">Read more</a>
+      </div>
+      <div class="post">
+        <img src="https://via.placeholder.com/300x200?text=Image+3" alt="Post 3">
+        <div class="category">TRAVELS + SIDE QUESTS</div>
+        <p>Embracing the spirit of trouvaille</p>
+        <a href="#">Read more</a>
+      </div>
     </div>
   </section>
 
+  <!-- Projects Section -->
+  <section class="posts-section">
+    <h2>Explore My Projects</h2>
+    <p>Technical work, startups, and research</p>
+    <div class="posts">
+      <div class="post">
+        <img src="https://via.placeholder.com/300x200?text=Startup+1" alt="Startup">
+        <div class="category">STARTUP</div>
+        <p>Just Jotes — upcycling denim into tote bags</p>
+        <a href="#">Learn more</a>
+      </div>
+      <div class="post">
+        <img src="https://via.placeholder.com/300x200?text=Research" alt="Research">
+        <div class="category">RESEARCH</div>
+        <p>Combating antibiotic resistance with novel approaches</p>
+        <a href="#">Learn more</a>
+      </div>
+      <div class="post">
+        <img src="https://via.placeholder.com/300x200?text=Project+3" alt="Project">
+        <div class="category">ENGINEERING</div>
+        <p>Synchronized drone holography system for live shows</p>
+        <a href="#">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="posts-section">
+    <h2>The Soul Behind "Just Life"</h2>
+    <p>Why this exists and who I am beyond the projects</p>
+    <div class="posts">
+      <div class="post">
+        <img src="https://via.placeholder.com/300x200?text=Polaroid+Memory" alt="Polaroid">
+        <div class="category">JUST LIFE</div>
+        <p>The small moments that matter most</p>
+        <a href="#">Read my story</a>
+      </div>
+      <div class="post">
+        <img src="https://via.placeholder.com/300x200?text=Purpose" alt="Purpose">
+        <div class="category">PURPOSE</div>
+        <p>What drives this blog, and why now</p>
+        <a href="#">Discover more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Subscribe -->
   <section class="subscribe">
     <h2>Receive updates</h2>
     <p>Enter your email to subscribe for updates:</p>
@@ -147,7 +341,39 @@
           console.error('Error!', error.message);
         });
     });
-  </script>
 
+    window.addEventListener('load', () => {
+      const popup = document.getElementById('popup-subscribe');
+      const overlay = document.getElementById('popup-overlay');
+      const closePopup = document.getElementById('close-popup');
+      const popupForm = document.forms['popup-submit-to-google-sheet'];
+      const popupResponseMsg = document.getElementById('popup-response-msg');
+
+      setTimeout(() => {
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+        overlay.style.opacity = '1';
+      }, 2000);
+
+      closePopup.addEventListener('click', () => {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+        overlay.style.opacity = '0';
+      });
+
+      popupForm.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(popupForm) })
+          .then(response => {
+            popupResponseMsg.innerText = 'Thank you for subscribing!';
+            popupForm.reset();
+          })
+          .catch(error => {
+            popupResponseMsg.innerText = 'Oops! Something went wrong.';
+            console.error('Error!', error.message);
+          });
+      });
+    });
+  </script>
 </body>
 </html>
